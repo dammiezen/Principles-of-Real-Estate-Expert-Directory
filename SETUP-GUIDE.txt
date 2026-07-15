@@ -39,7 +39,7 @@ UPDATING THE ACCESS CODE
 1. Create a SHA-256 hash for the new code.
 2. Replace accessCodeHash in config.js with the new 64-character hash.
 3. Increase the service-worker cache version, for example:
-   principles-resource-hub-v1 -> principles-resource-hub-v2
+   principles-resource-hub-v2 -> principles-resource-hub-v3
 4. Commit the updated files to GitHub.
 
 IMPORTANT SECURITY LIMITATION
