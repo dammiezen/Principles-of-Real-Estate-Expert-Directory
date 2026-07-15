@@ -1,0 +1,26 @@
+{
+  "name": "Principles of Real Estate Resource Hub",
+  "short_name": "PORE Resources",
+  "description": "Private expert directory and investor resource library for authorized Roadmap to Real Estate Investing students.",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf5ee",
+  "theme_color": "#0d5f6e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

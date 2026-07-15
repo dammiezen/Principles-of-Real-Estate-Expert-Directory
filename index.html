@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta
+    name="description"
+    content="Private Principles of Real Estate expert directory and investor resource app."
+  >
+  <meta name="theme-color" content="#0d5f6e">
+  <title>Principles of Real Estate Resource Hub</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./app-shell.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: #17383d;
+      font-family: "Poppins", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(232, 160, 144, 0.24), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #fbf5ee 100%);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .access-screen,
+    .dashboard-screen {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 34px 0 70px;
+    }
+
+    .access-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.65fr);
+      overflow: hidden;
+      min-height: 650px;
+      border: 1px solid rgba(13, 95, 110, 0.13);
+      border-radius: 32px;
+      background: #ffffff;
+      box-shadow: 0 24px 70px rgba(7, 63, 73, 0.13);
+    }
+
+    .access-intro {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(36px, 7vw, 76px);
+      color: #ffffff;
+      background: linear-gradient(135deg, #073f49, #0d5f6e);
+    }
+
+    .access-intro::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      top: -190px;
+      right: -120px;
+      border: 58px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+    }
+
+    .access-intro img {
+      position: relative;
+      z-index: 1;
+      width: min(330px, 88%);
+      max-height: 150px;
+      margin-bottom: 42px;
+      object-fit: contain;
+      object-position: left center;
+      filter: brightness(0) invert(1);
+    }
+
+    .access-eyebrow {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 13px;
+      color: #ffe9af;
+      font-size: 0.77rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .access-intro h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 0 18px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.3rem, 5.8vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .access-intro > p:last-of-type {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .access-form-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px, 5vw, 58px);
+    }
+
+    .access-form-panel h2 {
+      margin: 0 0 7px;
+      color: #073f49;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+    }
+
+    .access-help {
+      margin: 0 0 25px;
+      color: #667b7f;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .form-field label {
+      color: #284a50;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .form-field input {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 15px;
+      border: 1px solid rgba(13, 95, 110, 0.18);
+      border-radius: 14px;
+      color: #17383d;
+      background: #f3f8f7;
+      outline: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-field input:focus {
+      border-color: #0d5f6e;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(13, 95, 110, 0.08);
+    }
+
+    .agreement {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      margin: 4px 0 18px;
+      padding: 13px;
+      border: 1px solid rgba(212, 160, 32, 0.25);
+      border-radius: 13px;
+      color: #5e6258;
+      background: #fff9e9;
+      font-size: 0.71rem;
+      line-height: 1.55;
+    }
+
+    .agreement input {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: #0d5f6e;
+    }
+
+    .access-submit,
+    .install-button {
+      min-height: 50px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .access-submit {
+      width: 100%;
+      color: #ffffff;
+      background: #0d5f6e;
+      box-shadow: 0 11px 25px rgba(13, 95, 110, 0.2);
+    }
+
+    .access-message {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: #b14338;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .access-security {
+      margin: 16px 0 0;
+      color: #829195;
+      font-size: 0.67rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .dashboard-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: center;
+      overflow: hidden;
+      padding: clamp(34px, 6vw, 68px);
+      border-radius: 32px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #073f49, #0d5f6e);
+      box-shadow: 0 22px 56px rgba(7, 63, 73, 0.13);
+    }
+
+    .dashboard-hero h1 {
+      max-width: 760px;
+      margin: 0 0 15px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.2rem, 5.5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .dashboard-hero p {
+      max-width: 760px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+    }
+
+    .dashboard-hero img {
+      width: min(310px, 28vw);
+      max-height: 150px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .dashboard-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 21px;
+    }
+
+    .install-button {
+      color: #2f270d;
+      background: #d4a020;
+    }
+
+    .dashboard-lock {
+      min-height: 50px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .module-card {
+      display: flex;
+      min-height: 280px;
+      flex-direction: column;
+      padding: 29px;
+      border: 1px solid rgba(13, 95, 110, 0.12);
+      border-radius: 25px;
+      color: #17383d;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 15px 42px rgba(7, 63, 73, 0.08);
+      text-decoration: none;
+      transition: transform 170ms ease, box-shadow 170ms ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 48px rgba(7, 63, 73, 0.12);
+    }
+
+    .module-icon {
+      display: grid;
+      width: 55px;
+      height: 55px;
+      place-items: center;
+      margin-bottom: 27px;
+      border-radius: 17px;
+      color: #0d5f6e;
+      background: #f3f8f7;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .module-card h2 {
+      margin: 0 0 9px;
+      color: #073f49;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+    }
+
+    .module-card p {
+      margin: 0;
+      color: #667b7f;
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
+    .module-open {
+      margin-top: auto;
+      padding-top: 23px;
+      color: #0d5f6e;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .dashboard-disclaimer {
+      margin-top: 22px;
+    }
+
+    @media (max-width: 840px) {
+      .access-card {
+        grid-template-columns: 1fr;
+      }
+
+      .access-intro {
+        min-height: 420px;
+      }
+
+      .dashboard-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-hero img {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .access-screen,
+      .dashboard-screen {
+        width: min(100% - 14px, 1180px);
+        padding-top: 8px;
+      }
+
+      .access-card,
+      .dashboard-hero {
+        border-radius: 23px;
+      }
+
+      .access-intro {
+        min-height: 340px;
+        padding: 30px 23px;
+      }
+
+      .access-intro img {
+        width: 210px;
+        margin-bottom: 30px;
+      }
+
+      .access-form-panel {
+        padding: 29px 21px;
+      }
+
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .module-card {
+        min-height: 240px;
+        padding: 23px;
+      }
+    }
+  </style>
+
+  <script src="./config.js"></script>
+  <script src="./auth.js"></script>
+</head>
+
+<body>
+  <main class="access-screen" id="accessScreen">
+    <section class="access-card">
+      <div class="access-intro">
+        <img src="./assets/deba-logo.png" alt="Principles of Real Estate">
+        <p class="access-eyebrow">Private Student Resource App</p>
+        <h1>Principles of Real Estate Resource Hub</h1>
+        <p>
+          Access the Principles of Real Estate Expert Directory and private investor
+          resource library from one installable app.
+        </p>
+      </div>
+
+      <div class="access-form-panel">
+        <h2>Student Access</h2>
+        <p class="access-help">
+          Enter your name and temporary student access code. Access remains saved on
+          this device for 30 days unless the app is locked.
+        </p>
+
+        <form id="accessForm" novalidate>
+          <div class="form-field">
+            <label for="studentName">Full Name</label>
+            <input
+              id="studentName"
+              name="studentName"
+              type="text"
+              autocomplete="name"
+              placeholder="Enter your full name"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="studentCode">Temporary Access Code</label>
+            <input
+              id="studentCode"
+              name="studentCode"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your access code"
+              required
+            >
+          </div>
+
+          <label class="agreement">
+            <input id="legalAgreement" type="checkbox" required>
+            <span>
+              I understand this private app is for authorized Roadmap to Real Estate
+              Investing students only. I will not share the access code, app link,
+              directory details, vendor information, or protected resources with
+              unauthorized individuals.
+            </span>
+          </label>
+
+          <button class="access-submit" type="submit">I Agree &amp; Continue</button>
+          <p class="access-message" id="accessMessage" role="alert"></p>
+        </form>
+
+        <p class="access-security">
+          Access is stored only in this browser or installed app. Locking the app,
+          clearing app data, using another browser, or reaching the access expiration
+          will require the code again.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <main class="dashboard-screen" id="dashboardScreen" hidden>
+    <section class="dashboard-hero">
+      <div>
+        <p class="access-eyebrow">Authorized Student Resource App</p>
+        <h1>Principles of Real Estate Resource Hub</h1>
+        <p>
+          Welcome, <strong data-authorized-name>Student</strong>. Open the expert directory
+          or investor resource library below.
+        </p>
+
+        <div class="dashboard-actions">
+          <button class="install-button" id="installButton" type="button" hidden>
+            Install App
+          </button>
+          <button class="dashboard-lock" type="button" data-lock-app>
+            🔒 Lock App
+          </button>
+        </div>
+      </div>
+
+      <img src="./assets/deba-logo.png" alt="">
+    </section>
+
+    <section class="module-grid" aria-label="Private app sections">
+      <a class="module-card" href="./experts.html">
+        <span class="module-icon" aria-hidden="true">★</span>
+        <h2>Expert Directory</h2>
+        <p>
+          Search trusted real estate, financing, legal, insurance, property,
+          renovation, and contractor contacts.
+        </p>
+        <span class="module-open">Open Expert Directory →</span>
+      </a>
+
+      <a class="module-card" href="./resources.html">
+        <span class="module-icon" aria-hidden="true">⌘</span>
+        <h2>Investor Resource Library</h2>
+        <p>
+          Access forms, funding tools, agreements, rehab documents, planning
+          resources, and saved investor links.
+        </p>
+        <span class="module-open">Open Resource Library →</span>
+      </a>
+    </section>
+
+    <aside class="pore-legal-notice dashboard-disclaimer">
+      <p>
+        <strong>Important:</strong> The professionals, vendors, links, documents, and
+        resources inside this app are provided for general informational and referral
+        purposes only. Conduct independent due diligence and obtain appropriate
+        professional advice before relying on, hiring, paying, or entering into an
+        agreement with any third party.
+      </p>
+    </aside>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const accessScreen = document.getElementById("accessScreen");
+      const dashboardScreen = document.getElementById("dashboardScreen");
+      const accessForm = document.getElementById("accessForm");
+      const accessMessage = document.getElementById("accessMessage");
+      const installButton = document.getElementById("installButton");
+
+      function showDashboard() {
+        accessScreen.hidden = true;
+        dashboardScreen.hidden = false;
+        window.POREAuth.revealProtectedPage();
+      }
+
+      function showAccess() {
+        accessScreen.hidden = false;
+        dashboardScreen.hidden = true;
+      }
+
+      if (window.POREAuth.isAuthorized()) {
+        showDashboard();
+      } else {
+        showAccess();
+
+        if (new URLSearchParams(location.search).get("locked") === "1") {
+          accessMessage.textContent = "The app is locked. Enter the access code to continue.";
+        }
+      }
+
+      accessForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        accessMessage.textContent = "";
+
+        const name = document.getElementById("studentName").value.trim();
+        const code = document.getElementById("studentCode").value;
+        const agreed = document.getElementById("legalAgreement").checked;
+
+        if (!name) {
+          accessMessage.textContent = "Please enter the student’s full name.";
+          return;
+        }
+
+        if (!agreed) {
+          accessMessage.textContent = "Please accept the private-use agreement.";
+          return;
+        }
+
+        try {
+          const valid = await window.POREAuth.verifyAccessCode(code);
+
+          if (!valid) {
+            accessMessage.textContent = "The access code is incorrect.";
+            return;
+          }
+
+          window.POREAuth.saveSession(name);
+
+          const next = new URLSearchParams(location.search).get("next");
+          if (next === "experts.html" || next === "resources.html") {
+            location.replace(`./${next}`);
+            return;
+          }
+
+          showDashboard();
+          document.getElementById("studentCode").value = "";
+        } catch (error) {
+          accessMessage.textContent = error.message || "The access code could not be checked.";
+        }
+      });
+
+      document.querySelectorAll("[data-lock-app]").forEach(function (button) {
+        button.addEventListener("click", window.POREAuth.lockApp);
+      });
+
+      let deferredInstallPrompt = null;
+
+      window.addEventListener("beforeinstallprompt", function (event) {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        installButton.hidden = false;
+      });
+
+      installButton.addEventListener("click", async function () {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        installButton.hidden = true;
+      });
+
+      window.addEventListener("appinstalled", function () {
+        deferredInstallPrompt = null;
+        installButton.hidden = true;
+      });
+    })();
+  </script>
+</body>
+</html>

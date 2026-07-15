@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Private Principles of Real Estate expert, vendor, and contractor directory."
+  />
+  <title>Principles of Real Estate Expert Directory</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="theme-color" content="#0d5f6e" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="./app-shell.css" />
+  <script src="./config.js"></script>
+  <script src="./auth.js"></script>
+
+  <style>
+    :root {
+      --teal: #0d5f6e;
+      --teal-dark: #073f49;
+      --gold: #d4a020;
+      --salmon: #e8a090;
+      --cream: #fbf5ee;
+      --white: #ffffff;
+      --ink: #17383d;
+      --muted: #667b7f;
+      --line: rgba(13, 95, 110, 0.14);
+      --soft: #f3f8f7;
+      --soft-gold: #fff6df;
+      --shadow: 0 18px 46px rgba(7, 63, 73, 0.1);
+      --radius-lg: 30px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Poppins", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(232, 160, 144, 0.2), transparent 33%),
+        linear-gradient(180deg, #ffffff 0%, var(--cream) 100%);
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .experts-directory {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .experts-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(34px, 6vw, 70px);
+      border-radius: 34px;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(7, 63, 73, 0.99), rgba(13, 95, 110, 0.95)),
+        var(--teal);
+      box-shadow: var(--shadow);
+    }
+
+    .experts-hero::before,
+    .experts-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .experts-hero::before {
+      width: 340px;
+      height: 340px;
+      top: -190px;
+      right: -80px;
+      border: 54px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .experts-hero::after {
+      width: 190px;
+      height: 190px;
+      right: 220px;
+      bottom: -130px;
+      background: rgba(212, 160, 32, 0.12);
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: #ffe9af;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-label::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .experts-hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 0 16px;
+      color: #ffffff !important;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.5rem, 6vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+    }
+
+    .directory-toolbar {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      margin: 24px 0 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 14px 38px rgba(7, 63, 73, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 17px;
+      transform: translateY(-50%);
+      color: var(--teal);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .directory-search {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 18px 0 48px;
+      border: 1px solid rgba(13, 95, 110, 0.16);
+      border-radius: 16px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 0.94rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .directory-search:focus {
+      border-color: var(--teal);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(13, 95, 110, 0.08);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .directory-button {
+      min-height: 44px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--teal-dark);
+      background: var(--soft);
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .directory-button:hover {
+      transform: translateY(-1px);
+      background: #e8f1f0;
+    }
+
+    .directory-button.primary {
+      color: #2e270e;
+      background: var(--gold);
+      box-shadow: 0 9px 22px rgba(212, 160, 32, 0.2);
+    }
+
+    .filter-scroll {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding: 4px 1px 16px;
+      scrollbar-width: thin;
+    }
+
+    .filter-button {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid rgba(13, 95, 110, 0.13);
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 800;
+      transition: 160ms ease;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      color: var(--white);
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .results-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 3px 2px 16px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .category-group {
+      margin-top: 18px;
+      border: 1px solid rgba(13, 95, 110, 0.11);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.93);
+      box-shadow: 0 14px 38px rgba(7, 63, 73, 0.07);
+      overflow: hidden;
+    }
+
+    .category-group[hidden] {
+      display: none;
+    }
+
+    .category-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 26px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdfd 100%);
+    }
+
+    .category-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .category-summary-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .category-icon {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--soft);
+      color: var(--teal);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .category-title {
+      margin: 0 0 3px;
+      color: var(--teal-dark);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 800;
+    }
+
+    .category-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .category-count {
+      display: inline-grid;
+      min-width: 42px;
+      height: 32px;
+      place-items: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--soft);
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .category-caret {
+      color: var(--teal);
+      font-size: 1.2rem;
+      font-weight: 800;
+      transition: transform 180ms ease;
+    }
+
+    .category-group[open] .category-caret {
+      transform: rotate(180deg);
+    }
+
+    .category-content {
+      padding: 0 26px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .expert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding-top: 24px;
+    }
+
+    .expert-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 21px;
+      border: 1px solid rgba(13, 95, 110, 0.11);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+    }
+
+    .expert-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(13, 95, 110, 0.25);
+      box-shadow: 0 14px 30px rgba(7, 63, 73, 0.08);
+    }
+
+    .expert-card[hidden] {
+      display: none;
+    }
+
+    .expert-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .expert-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--soft);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .expert-name {
+      margin: 0 0 4px;
+      color: var(--teal-dark);
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .expert-role {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.79rem;
+      font-weight: 600;
+    }
+
+    .expert-company {
+      margin: 4px 0 0;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 9px;
+      margin: 15px 0 0;
+    }
+
+    .contact-line {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .contact-label {
+      color: #436065;
+      font-weight: 800;
+    }
+
+    .contact-value,
+    .contact-value a {
+      min-width: 0;
+      color: var(--ink);
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-value a {
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      color: var(--teal);
+      text-decoration: underline;
+    }
+
+    .expert-note {
+      margin: 15px 0 0;
+      padding: 12px 13px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      color: #5f6257;
+      background: var(--soft-gold);
+      font-size: 0.76rem;
+      line-height: 1.55;
+    }
+
+    .promo-code {
+      display: inline-flex;
+      margin-top: 13px;
+      padding: 8px 11px;
+      border: 1px dashed rgba(212, 160, 32, 0.65);
+      border-radius: 10px;
+      color: #7f5900;
+      background: #fff9eb;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 17px;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border: 1px solid rgba(13, 95, 110, 0.12);
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--soft);
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 160ms ease;
+    }
+
+    .contact-button:hover {
+      transform: translateY(-1px);
+      color: var(--white);
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .contact-button.featured {
+      color: #2f270d;
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .empty-state {
+      display: none;
+      padding: 38px 24px;
+      border: 1px dashed rgba(13, 95, 110, 0.22);
+      border-radius: 22px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.75);
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .empty-state.show {
+      display: block;
+    }
+
+    .directory-footer {
+      margin-top: 26px;
+      padding: 26px;
+      border-radius: 24px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      text-align: center;
+    }
+
+    .directory-footer h2 {
+      margin: 0 0 7px;
+      color: #ffffff !important;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .directory-footer p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #ffffff !important;
+      font-size: 0.83rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 9999;
+      max-width: calc(100% - 32px);
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--teal-dark);
+      box-shadow: 0 14px 32px rgba(7, 63, 73, 0.25);
+      font-size: 0.82rem;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 14px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 900px) {
+      .directory-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .expert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .experts-directory {
+        width: min(100% - 16px, 1440px);
+        padding-top: 8px;
+      }
+
+      .experts-hero {
+        padding: 30px 22px;
+        border-radius: 24px;
+      }
+
+      .directory-toolbar {
+        padding: 13px;
+        border-radius: 18px;
+      }
+
+      .toolbar-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .directory-button {
+        width: 100%;
+      }
+
+      .category-summary {
+        padding: 19px 17px;
+      }
+
+      .category-content {
+        padding: 0 16px 18px;
+      }
+
+      .category-icon {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+      }
+
+      .category-subtitle {
+        display: none;
+      }
+
+      .expert-card {
+        padding: 17px;
+      }
+
+      .contact-line {
+        grid-template-columns: 66px minmax(0, 1fr);
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .experts-directory {
+        width: 100%;
+        padding: 0;
+      }
+
+      .directory-toolbar,
+      .filter-scroll,
+      .results-line,
+      .card-actions,
+      .directory-footer {
+        display: none !important;
+      }
+
+      .experts-hero {
+        padding: 24px;
+        color: #111;
+        background: #ffffff;
+        border: 1px solid #bbb;
+        box-shadow: none;
+      }
+
+      .experts-hero h1,
+      .hero-copy,
+      .hero-label {
+        color: #111 !important;
+      }
+
+      .category-group {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      .category-group:not([open]) .category-content {
+        display: block;
+      }
+
+      .expert-card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="auth-pending">
+  <header class="pore-appbar">
+    <div class="pore-appbar-inner">
+      <a class="pore-brand" href="./index.html" aria-label="Return to the Resource Hub">
+        <img src="./assets/deba-logo.png" alt="Principles of Real Estate">
+        <span class="pore-brand-text">
+          <span class="pore-brand-title">Principles of Real Estate</span>
+          <span class="pore-brand-subtitle">Authorized to: <span data-authorized-name>Student</span></span>
+        </span>
+      </a>
+
+      <nav class="pore-app-actions" aria-label="App navigation">
+        <a class="pore-nav-link" href="./index.html">Home</a>
+        <a class="pore-nav-link resources-link" href="./resources.html">Resources</a>
+        <button class="pore-lock-button" type="button" data-lock-app>
+          🔒 Lock App
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main class="experts-directory">
+    <section class="experts-hero">
+      <p class="hero-label">Principles of Real Estate Expert Directory</p>
+      <h1>Principles of Real Estate Expert Directory</h1>
+      <p class="hero-copy">
+        Please refer to the trusted professionals below for your real estate,
+        financing, legal, insurance, property, renovation, and contractor needs.
+      </p>
+    </section>
+
+    <aside class="pore-legal-notice" aria-label="Important professional and vendor disclaimer">
+      <p>
+        <strong>Important Disclaimer:</strong> The professionals, vendors, service providers,
+        documents, and resources listed in this app are shared for general informational and
+        referral purposes only. Principles of Real Estate and Douglas Dwellings do not guarantee,
+        endorse, warrant, or assume responsibility for any third party’s services, advice,
+        availability, pricing, licensing, insurance, work quality, representations, or results.
+      </p>
+      <p>
+        You are solely responsible for performing your own due diligence before hiring, paying,
+        relying on, or entering into an agreement with any provider. Verify credentials, licenses,
+        insurance, references, fees, contracts, and suitability, and obtain independent legal,
+        tax, financial, lending, insurance, or other professional advice when appropriate.
+        Use of any provider or resource is voluntary and at your own risk. Listings and
+        recommendations may be changed or removed without notice.
+      </p>
+    </aside>
+
+    <section class="directory-toolbar" aria-label="Directory controls">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input
+          class="directory-search"
+          id="directorySearch"
+          type="search"
+          placeholder="Search by name, company, service, trade, phone, or email..."
+          aria-label="Search the expert directory"
+        />
+      </div>
+
+      <div class="toolbar-actions">
+        <button class="directory-button" type="button" id="expandAllButton">
+          Expand All
+        </button>
+        <button class="directory-button" type="button" id="collapseAllButton">
+          Collapse All
+        </button>
+        <button class="directory-button primary" type="button" id="printButton">
+          Print Directory
+        </button>
+      </div>
+    </section>
+
+    <nav class="filter-scroll" id="filterButtons" aria-label="Filter experts by category"></nav>
+
+    <div class="results-line">
+      <span id="resultsCount">Showing all experts</span>
+      <span>Tap a category to open it</span>
+    </div>
+
+    <section id="directoryGroups" aria-live="polite"></section>
+
+    <div class="empty-state" id="emptyState">
+      No matching expert or service was found. Try a different name, category, or trade.
+    </div>
+
+    <section class="directory-footer">
+      <h2>Keep the Expert Directory Available in Your App</h2>
+      <p>
+        Return to this directory inside the installed Resource Hub whenever you need
+        an expert, service provider, vendor, or contractor.
+      </p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const directoryData = [
+        {
+          id: "mentor",
+          title: "Founder & Mentor",
+          subtitle: "General real estate and Roadmap to Real Estate support",
+          icon: "★",
+          filter: "Mentor",
+          contacts: [
+            {
+              name: "Deba Douglas",
+              role: "Founder / Mentor",
+              company: "Douglas Dwellings",
+              phones: [{ label: "Phone", value: "972-813-9582" }],
+              emails: ["support@douglasdwellings.com"],
+              note: "For all general questions regarding real estate and the “Roadmap to Real Estate” course, contact Deba by email."
+            }
+          ]
+        },
+        {
+          id: "financing",
+          title: "Financing & Lending",
+          subtitle: "Hard money, pre-approval, refinance, DSCR, and business banking",
+          icon: "$",
+          filter: "Financing",
+          contacts: [
+            {
+              name: "Jared Sandler",
+              role: "Loan Consultant",
+              company: "Longhorn Hard Money",
+              phones: [
+                { label: "Phone", value: "(214) 420-7323" },
+                { label: "Mobile", value: "(972) 839-0274" }
+              ],
+              emails: ["jsandler@longhorninvestments.com"],
+              websites: [
+                { label: "Website", url: "https://www.longhorninvestments.com/" },
+                {
+                  label: "Pre-Approval Application",
+                  url: "https://www.longhorninvestments.com/loan-consultants/jared-sandler1",
+                  featured: true
+                }
+              ],
+              note: "Contact Jared for hard money loan questions, inquiries, and sign-up. He is your go-to for securing your deal financially."
+            },
+            {
+              name: "Lisa Jones",
+              role: "President",
+              company: "Creative Property Funding",
+              phones: [{ label: "Phone", value: "(817) 707-8450" }],
+              emails: ["lisa@creativepropertyfunding.com"],
+              note: "Contact Lisa for all cash-out refinance questions."
+            },
+            {
+              name: "Holden Thomas",
+              role: "Branch Manager",
+              company: "Holden Thomas Team",
+              phones: [{ label: "Phone", value: "(214) 897-3587" }],
+              emails: ["holden@holdenthomasteam.com"]
+            },
+            {
+              name: "Aaron Jameson",
+              role: "Vice President / Business Banking",
+              company: "Frost Bank",
+              phones: [{ label: "Phone", value: "(214) 515-4304" }],
+              emails: ["Aaron.jameson@frostbank.com"]
+            },
+            {
+              name: "Kay La'Quel",
+              role: "Business Credit Specialist",
+              company: "Kays Financial Services",
+              phones: [{ label: "Phone", value: "(469) 654-7741" }],
+              emails: ["info@kaysfinancialservices.com"],
+              note: "For those looking to expand their business credit and gain access to funding, contact Kay for general questions. Business credit is very important."
+            }
+          ]
+        },
+        {
+          id: "staging",
+          title: "Home Staging",
+          subtitle: "In-house and professional home staging support",
+          icon: "⌂",
+          filter: "Staging",
+          contacts: [
+            {
+              name: "Maura or Fabiola",
+              role: "In-House Stager",
+              company: "Douglas Dwellings",
+              websites: [
+                {
+                  label: "Staging Website",
+                  url: "https://www.douglasdwellings.com/staging",
+                  featured: true
+                }
+              ]
+            },
+            {
+              name: "Nikki Watson",
+              role: "Home Staging",
+              company: "The Design Quad",
+              phones: [{ label: "Phone", value: "214-647-1779" }],
+              emails: ["admin@designquad.com"],
+              promo: "Use code “Douglas Dwellings” to receive $50 off."
+            }
+          ]
+        },
+        {
+          id: "real-estate-services",
+          title: "Real Estate & Property Services",
+          subtitle: "Realtor, eviction, inspection, survey, appraisal, and title services",
+          icon: "⌘",
+          filter: "Property Services",
+          contacts: [
+            {
+              name: "Lisa Duval",
+              role: "Eviction Specialist",
+              emails: ["ldtxservices@gmail.com"],
+              note: "Contact Lisa if you have questions regarding the eviction process or need to legally remove a tenant."
+            },
+            {
+              name: "Leanna LaRose",
+              role: "Realtor Investor Specialist",
+              phones: [{ label: "Phone", value: "(972) 813-9582" }],
+              emails: ["Support@douglasdwellings.com"],
+              note: "Leanna can provide comps and homes on MLS. Contact her for general questions."
+            },
+            {
+              name: "Melissa Berry",
+              role: "Title",
+              company: "Secured Title",
+              emails: ["mberry@securedtitletx.com"]
+            },
+            {
+              name: "GreenWorks Inspection",
+              role: "Property Inspections",
+              company: "Ask for the Investment Protection Package",
+              phones: [{ label: "Phone", value: "1 (855) 349-6757" }],
+              websites: [
+                {
+                  label: "Website",
+                  url: "https://greenworksinspections.com/",
+                  featured: true
+                }
+              ]
+            },
+            {
+              name: "Joshua Webb",
+              role: "Surveyor",
+              phones: [{ label: "Phone", value: "(469) 407-1762" }],
+              emails: ["joshuaraywebb35@gmail.com"]
+            },
+            {
+              name: "Brandon Willingham",
+              role: "Appraiser",
+              phones: [{ label: "Phone", value: "(870) 500-1888" }],
+              emails: ["TheAlphaAppraisal@gmail.com"]
+            }
+          ]
+        },
+        {
+          id: "insurance",
+          title: "Insurance",
+          subtitle: "Rehab, rental, home, and commercial insurance contacts",
+          icon: "✓",
+          filter: "Insurance",
+          contacts: [
+            {
+              name: "Ben Williams",
+              role: "Rehab Insurance",
+              company: "Investor Insurance",
+              phones: [{ label: "Phone", value: "(214) 502-6857" }],
+              emails: ["ben@investorinsurance.co"],
+              note: "Pricing is cheaper."
+            },
+            {
+              name: "Kevin Wortham",
+              role: "Commercial Lines Manager",
+              phones: [
+                { label: "Phone", value: "(469) 544-9344" },
+                { label: "Fax", value: "(972) 464-2740", fax: true }
+              ],
+              emails: ["kevin@knowyouragent.com"],
+              note: "Call Kevin when you get a property under contract and need insurance on the property."
+            },
+            {
+              name: "Tin Vu",
+              role: "Home & Rental Insurance Broker",
+              company: "Greenhill Insurance",
+              phones: [
+                { label: "Text", value: "(973) 737-9119" },
+                { label: "Office", value: "(972) 243-3598" },
+                { label: "Fax", value: "(972) 234-8415", fax: true }
+              ],
+              emails: ["Tin@greenhillinsurance.com"]
+            }
+          ]
+        },
+        {
+          id: "legal-tax",
+          title: "Legal & Tax",
+          subtitle: "CPA, LLC, business, estate planning, and real estate legal support",
+          icon: "§",
+          filter: "Legal & Tax",
+          contacts: [
+            {
+              name: "Monica Anderson",
+              role: "CPA",
+              emails: ["monica@mkacpa.com"]
+            },
+            {
+              name: "Zachary A. Copp",
+              role: "Attorney — LLC & Business Needs",
+              company: "Copp Law",
+              phones: [{ label: "Phone", value: "(214) 206-1999" }],
+              emails: ["zac@copplaw.com"],
+              note: "Contact Zach to help ensure your business is legally covered and your business structure is set up properly."
+            },
+            {
+              name: "Shondra Williams",
+              role: "Attorney",
+              phones: [{ label: "Phone", value: "214-838-0367" }],
+              emails: ["snwilliams@shondralaw.com"],
+              websites: [
+                {
+                  label: "Website",
+                  url: "https://shondrawlaw.com/",
+                  featured: true
+                }
+              ],
+              note: "Can assist with LLC setup, estate planning, and real estate questions."
+            }
+          ]
+        },
+        {
+          id: "utilities",
+          title: "Utilities & Home Concierge",
+          subtitle: "Personalized utility and home setup support",
+          icon: "◇",
+          filter: "Property Services",
+          contacts: [
+            {
+              name: "Diane Davis",
+              role: "Personalized Utility & Home Concierge Services",
+              company: "Zupkeep",
+              phones: [{ label: "Phone", value: "(469) 560-8332" }],
+              emails: ["dianed@zupkeep.com"]
+            }
+          ]
+        },
+        {
+          id: "contractors",
+          title: "Approved General Contractors",
+          subtitle: "Renovation, construction, repairs, supplies, cleanup, and property trades",
+          icon: "⚒",
+          filter: "Contractors",
+          contacts: [
+            {
+              name: "Cesar Barco",
+              role: "General Contractor",
+              phones: [{ label: "Phone", value: "214-994-2957" }]
+            },
+            {
+              name: "BRN Construction Group",
+              role: "General Contractor",
+              phones: [{ label: "Phone", value: "469-753-4595" }]
+            },
+            {
+              name: "Bardomiano",
+              role: "Foundation",
+              phones: [{ label: "Phone", value: "469-989-4246" }],
+              note: "Collect all paperwork before payment."
+            },
+            {
+              name: "Highline Building Supplies",
+              role: "Doors",
+              phones: [{ label: "Phone", value: "214-718-0488" }]
+            },
+            {
+              name: "Puerta Ali Recycling LLC",
+              role: "Doors",
+              phones: [{ label: "Phone", value: "682-240-2992" }]
+            },
+            {
+              name: "Martin Mata",
+              role: "Cabinets",
+              phones: [{ label: "Phone", value: "214-554-4164" }]
+            },
+            {
+              name: "Chuy",
+              role: "Countertops",
+              phones: [{ label: "Phone", value: "214-306-3194" }]
+            },
+            {
+              name: "Ralph",
+              role: "Countertops",
+              phones: [{ label: "Phone", value: "214-489-3005" }]
+            },
+            {
+              name: "Henry Blanco",
+              role: "Painter / Drywall / Texture",
+              phones: [{ label: "Phone", value: "214-429-8236" }]
+            },
+            {
+              name: "Renee",
+              role: "Painter / Drywall / Texture",
+              phones: [{ label: "Phone", value: "214-809-5853" }]
+            },
+            {
+              name: "Lilian Aguilar",
+              role: "Cleaning",
+              phones: [{ label: "Phone", value: "972-505-6832" }]
+            },
+            {
+              name: "Cesar Blanco",
+              role: "Plumber / Electrician",
+              phones: [{ label: "Phone", value: "214-769-6781" }]
+            },
+            {
+              name: "Ronal Blanco",
+              role: "Tile",
+              phones: [{ label: "Phone", value: "469-894-9593" }]
+            },
+            {
+              name: "Elias Pest Control",
+              role: "Pest Control",
+              phones: [{ label: "Phone", value: "214-457-4328" }]
+            },
+            {
+              name: "Jose",
+              role: "Flooring",
+              phones: [{ label: "Phone", value: "214-960-7837" }]
+            },
+            {
+              name: "Mark Johnson",
+              role: "Appliances",
+              phones: [{ label: "Phone", value: "214-622-1329" }]
+            },
+            {
+              name: "Jaime",
+              role: "HVAC",
+              phones: [{ label: "Phone", value: "214-475-6856" }]
+            },
+            {
+              name: "Fabian Ruiz",
+              role: "Roofer",
+              phones: [{ label: "Phone", value: "469-438-8390" }]
+            },
+            {
+              name: "Francisco",
+              role: "Landscaper",
+              phones: [{ label: "Phone", value: "469-360-8065" }]
+            },
+            {
+              name: "Casten",
+              role: "Landscaper",
+              phones: [{ label: "Phone", value: "214-281-6752" }]
+            },
+            {
+              name: "Gabriel",
+              role: "Fence / Trash Haul",
+              phones: [{ label: "Phone", value: "972-489-3956" }]
+            },
+            {
+              name: "J’s Junk Removal / Dump Rental",
+              role: "Dumpster Drop Off",
+              company: "Jose",
+              phones: [{ label: "Phone", value: "469-881-3834" }]
+            },
+            {
+              name: "Aron",
+              role: "Dumpster Rental",
+              phones: [{ label: "Phone", value: "972-689-1529" }]
+            },
+            {
+              name: "Steve",
+              role: "Window & Glass Replacement",
+              phones: [{ label: "Phone", value: "214-791-4729" }]
+            },
+            {
+              name: "Jose",
+              role: "Shower / Window Glass Install & Replacement",
+              phones: [{ label: "Phone", value: "832-657-2553" }]
+            }
+          ]
+        }
+      ];
+
+      const groupsContainer = document.getElementById("directoryGroups");
+      const searchInput = document.getElementById("directorySearch");
+      const filterContainer = document.getElementById("filterButtons");
+      const resultsCount = document.getElementById("resultsCount");
+      const emptyState = document.getElementById("emptyState");
+      const toast = document.getElementById("toast");
+
+      let activeFilter = "All";
+
+      function normalizePhone(phone) {
+        return phone.replace(/[^\d+]/g, "");
+      }
+
+      function safeText(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function contactSearchText(contact, group) {
+        const phoneText = (contact.phones || []).map((item) => `${item.label} ${item.value}`).join(" ");
+        const emailText = (contact.emails || []).join(" ");
+        const websiteText = (contact.websites || []).map((item) => `${item.label} ${item.url}`).join(" ");
+
+        return [
+          group.title,
+          group.subtitle,
+          group.filter,
+          contact.name,
+          contact.role,
+          contact.company,
+          phoneText,
+          emailText,
+          websiteText,
+          contact.note,
+          contact.promo
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+      }
+
+      function buildContactDetails(contact) {
+        const lines = [];
+
+        (contact.phones || []).forEach((phone) => {
+          const value = safeText(phone.value);
+          const phoneValue = normalizePhone(phone.value);
+
+          lines.push(`
+            <div class="contact-line">
+              <span class="contact-label">${safeText(phone.label)}</span>
+              <span class="contact-value">
+                ${
+                  phone.fax
+                    ? value
+                    : `<a href="tel:${phoneValue}">${value}</a>`
+                }
+              </span>
+            </div>
+          `);
+        });
+
+        (contact.emails || []).forEach((email) => {
+          lines.push(`
+            <div class="contact-line">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">
+                <a href="mailto:${safeText(email)}">${safeText(email)}</a>
+              </span>
+            </div>
+          `);
+        });
+
+        (contact.websites || []).forEach((website) => {
+          lines.push(`
+            <div class="contact-line">
+              <span class="contact-label">${safeText(website.label)}</span>
+              <span class="contact-value">
+                <a href="${safeText(website.url)}" target="_blank" rel="noopener noreferrer">
+                  Open Link
+                </a>
+              </span>
+            </div>
+          `);
+        });
+
+        return lines.join("");
+      }
+
+      function buildActions(contact, cardIndex, groupIndex) {
+        const actions = [];
+        const firstCallablePhone = (contact.phones || []).find((phone) => !phone.fax);
+        const firstEmail = (contact.emails || [])[0];
+
+        if (firstCallablePhone) {
+          actions.push(`
+            <a class="contact-button" href="tel:${normalizePhone(firstCallablePhone.value)}">
+              Call
+            </a>
+          `);
+        }
+
+        if (firstEmail) {
+          actions.push(`
+            <a class="contact-button" href="mailto:${safeText(firstEmail)}">
+              Email
+            </a>
+          `);
+        }
+
+        (contact.websites || []).forEach((website) => {
+          actions.push(`
+            <a
+              class="contact-button ${website.featured ? "featured" : ""}"
+              href="${safeText(website.url)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ${safeText(website.label)}
+            </a>
+          `);
+        });
+
+        actions.push(`
+          <button
+            class="contact-button copy-contact"
+            type="button"
+            data-group-index="${groupIndex}"
+            data-card-index="${cardIndex}"
+          >
+            Copy Details
+          </button>
+        `);
+
+        return actions.join("");
+      }
+
+      function renderDirectory() {
+        groupsContainer.innerHTML = directoryData
+          .map((group, groupIndex) => {
+            const cards = group.contacts
+              .map((contact, cardIndex) => {
+                const searchText = contactSearchText(contact, group);
+
+                return `
+                  <article
+                    class="expert-card"
+                    data-search="${safeText(searchText)}"
+                    data-filter="${safeText(group.filter)}"
+                  >
+                    <div class="expert-top">
+                      <div>
+                        <span class="expert-badge">${safeText(contact.role || group.title)}</span>
+                        <h3 class="expert-name">${safeText(contact.name)}</h3>
+                        ${contact.role ? `<p class="expert-role">${safeText(contact.role)}</p>` : ""}
+                        ${contact.company ? `<p class="expert-company">${safeText(contact.company)}</p>` : ""}
+                      </div>
+                    </div>
+
+                    <div class="contact-list">
+                      ${buildContactDetails(contact)}
+                    </div>
+
+                    ${contact.promo ? `<div class="promo-code">${safeText(contact.promo)}</div>` : ""}
+                    ${contact.note ? `<p class="expert-note">${safeText(contact.note)}</p>` : ""}
+
+                    <div class="card-actions">
+                      ${buildActions(contact, cardIndex, groupIndex)}
+                    </div>
+                  </article>
+                `;
+              })
+              .join("");
+
+            return `
+              <details class="category-group" data-filter="${safeText(group.filter)}" ${groupIndex < 2 ? "open" : ""}>
+                <summary class="category-summary">
+                  <div class="category-summary-left">
+                    <span class="category-icon" aria-hidden="true">${safeText(group.icon)}</span>
+                    <div>
+                      <h2 class="category-title">${safeText(group.title)}</h2>
+                      <p class="category-subtitle">${safeText(group.subtitle)}</p>
+                    </div>
+                  </div>
+
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <span class="category-count">${group.contacts.length}</span>
+                    <span class="category-caret" aria-hidden="true">⌄</span>
+                  </div>
+                </summary>
+
+                <div class="category-content">
+                  <div class="expert-grid">
+                    ${cards}
+                  </div>
+                </div>
+              </details>
+            `;
+          })
+          .join("");
+      }
+
+      function renderFilters() {
+        const filters = ["All", ...new Set(directoryData.map((group) => group.filter))];
+
+        filterContainer.innerHTML = filters
+          .map(
+            (filter) => `
+              <button
+                class="filter-button ${filter === "All" ? "active" : ""}"
+                type="button"
+                data-filter="${safeText(filter)}"
+              >
+                ${safeText(filter)}
+              </button>
+            `
+          )
+          .join("");
+      }
+
+      function applyFilters() {
+        const query = searchInput.value.trim().toLowerCase();
+        const groups = [...document.querySelectorAll(".category-group")];
+        let visibleCards = 0;
+        let visibleGroups = 0;
+
+        groups.forEach((group) => {
+          const cards = [...group.querySelectorAll(".expert-card")];
+          let groupMatches = 0;
+
+          cards.forEach((card) => {
+            const matchesSearch = !query || card.dataset.search.includes(query);
+            const matchesFilter =
+              activeFilter === "All" || card.dataset.filter === activeFilter;
+            const shouldShow = matchesSearch && matchesFilter;
+
+            card.hidden = !shouldShow;
+
+            if (shouldShow) {
+              visibleCards += 1;
+              groupMatches += 1;
+            }
+          });
+
+          group.hidden = groupMatches === 0;
+
+          if (groupMatches > 0) {
+            visibleGroups += 1;
+
+            if (query || activeFilter !== "All") {
+              group.open = true;
+            }
+          }
+        });
+
+        emptyState.classList.toggle("show", visibleCards === 0);
+
+        if (query || activeFilter !== "All") {
+          resultsCount.textContent =
+            visibleCards === 1
+              ? "1 matching expert"
+              : `${visibleCards} matching experts`;
+        } else {
+          resultsCount.textContent = `Showing all ${visibleCards} experts`;
+        }
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
+      }
+
+      function contactToText(contact) {
+        const lines = [
+          contact.name,
+          contact.role || "",
+          contact.company || ""
+        ].filter(Boolean);
+
+        (contact.phones || []).forEach((phone) => {
+          lines.push(`${phone.label}: ${phone.value}`);
+        });
+
+        (contact.emails || []).forEach((email) => {
+          lines.push(`Email: ${email}`);
+        });
+
+        (contact.websites || []).forEach((website) => {
+          lines.push(`${website.label}: ${website.url}`);
+        });
+
+        if (contact.promo) lines.push(contact.promo);
+        if (contact.note) lines.push(contact.note);
+
+        return lines.join("\n");
+      }
+
+      async function copyText(text, message) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (error) {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          textArea.remove();
+        }
+
+        showToast(message);
+      }
+
+      renderDirectory();
+      renderFilters();
+      applyFilters();
+
+      searchInput.addEventListener("input", applyFilters);
+
+      filterContainer.addEventListener("click", (event) => {
+        const button = event.target.closest(".filter-button");
+        if (!button) return;
+
+        activeFilter = button.dataset.filter;
+
+        document.querySelectorAll(".filter-button").forEach((item) => {
+          item.classList.toggle("active", item === button);
+        });
+
+        applyFilters();
+      });
+
+      groupsContainer.addEventListener("click", (event) => {
+        const copyButton = event.target.closest(".copy-contact");
+        if (!copyButton) return;
+
+        const groupIndex = Number(copyButton.dataset.groupIndex);
+        const cardIndex = Number(copyButton.dataset.cardIndex);
+        const contact = directoryData[groupIndex].contacts[cardIndex];
+
+        copyText(contactToText(contact), `${contact.name}'s details copied.`);
+      });
+
+      document.getElementById("expandAllButton").addEventListener("click", () => {
+        document.querySelectorAll(".category-group:not([hidden])").forEach((group) => {
+          group.open = true;
+        });
+
+        showToast("All visible categories expanded.");
+      });
+
+      document.getElementById("collapseAllButton").addEventListener("click", () => {
+        document.querySelectorAll(".category-group").forEach((group) => {
+          group.open = false;
+        });
+
+        showToast("All categories collapsed.");
+      });
+
+      document.getElementById("printButton").addEventListener("click", () => {
+        document.querySelectorAll(".category-group:not([hidden])").forEach((group) => {
+          group.open = true;
+        });
+
+        window.print();
+      });
+    })();
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.POREAuth || !window.POREAuth.requireAccess()) return;
+
+      document.querySelectorAll("[data-lock-app]").forEach(function (button) {
+        button.addEventListener("click", window.POREAuth.lockApp);
+      });
+    });
+  </script>
+</body>
+</html>

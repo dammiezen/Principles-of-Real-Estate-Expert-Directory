@@ -1,0 +1,176 @@
+:root {
+  --pore-teal: #0d5f6e;
+  --pore-teal-dark: #073f49;
+  --pore-gold: #d4a020;
+  --pore-salmon: #e8a090;
+  --pore-cream: #fbf5ee;
+  --pore-white: #ffffff;
+  --pore-ink: #17383d;
+  --pore-muted: #667b7f;
+  --pore-line: rgba(13, 95, 110, 0.15);
+}
+
+body.auth-pending > * {
+  visibility: hidden !important;
+}
+
+.pore-appbar {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  border-bottom: 1px solid var(--pore-line);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(7, 63, 73, 0.07);
+  backdrop-filter: blur(14px);
+}
+
+.pore-appbar-inner {
+  display: flex;
+  width: min(1440px, calc(100% - 28px));
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.pore-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+  color: var(--pore-teal-dark);
+  text-decoration: none;
+}
+
+.pore-brand img {
+  width: 150px;
+  max-height: 54px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.pore-brand-text {
+  display: grid;
+  gap: 1px;
+}
+
+.pore-brand-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.pore-brand-subtitle {
+  color: var(--pore-muted);
+  font-size: 0.67rem;
+  font-weight: 600;
+}
+
+.pore-app-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pore-nav-link,
+.pore-lock-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 13px;
+  border: 1px solid var(--pore-line);
+  border-radius: 999px;
+  color: var(--pore-teal-dark);
+  background: var(--pore-white);
+  cursor: pointer;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.pore-nav-link:hover,
+.pore-lock-button:hover {
+  transform: translateY(-1px);
+  background: #f1f7f6;
+}
+
+.pore-lock-button {
+  color: #ffffff;
+  border-color: var(--pore-teal);
+  background: var(--pore-teal);
+}
+
+.pore-legal-notice {
+  margin: 20px 0 4px;
+  padding: 19px 20px;
+  border: 1px solid rgba(212, 160, 32, 0.3);
+  border-left: 5px solid var(--pore-gold);
+  border-radius: 17px;
+  color: #55594f;
+  background: #fff9e9;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.pore-legal-notice strong {
+  color: #72520b;
+}
+
+.pore-legal-notice p {
+  margin: 0;
+}
+
+.pore-legal-notice p + p {
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  .pore-appbar-inner {
+    width: min(100% - 14px, 1440px);
+    min-height: 62px;
+    gap: 7px;
+  }
+
+  .pore-brand img {
+    width: 118px;
+    max-width: 34vw;
+  }
+
+  .pore-brand-text {
+    display: none;
+  }
+
+  .pore-app-actions {
+    gap: 5px;
+  }
+
+  .pore-nav-link,
+  .pore-lock-button {
+    min-height: 36px;
+    padding: 0 9px;
+    font-size: 0.64rem;
+  }
+
+  .pore-nav-link.resources-link {
+    display: none;
+  }
+
+  .pore-legal-notice {
+    padding: 16px;
+    font-size: 0.73rem;
+  }
+}
+
+@media print {
+  .pore-appbar {
+    display: none !important;
+  }
+}

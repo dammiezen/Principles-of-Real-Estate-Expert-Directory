@@ -1,0 +1,56 @@
+PRINCIPLES OF REAL ESTATE RESOURCE HUB
+SETUP GUIDE
+============================================================
+
+IMPORTANT
+This is a NEW and separate app. Do not upload these files into the calculator
+repository unless you intentionally want to replace the calculator.
+
+RECOMMENDED NEW GITHUB REPOSITORY
+principles-real-estate-resources
+
+FILES INCLUDED
+- index.html          Student login and app dashboard
+- experts.html        Principles of Real Estate Expert Directory
+- resources.html      Private Investor Resource Library
+- config.js           App settings and access-code hash
+- auth.js             Shared password/session protection
+- app-shell.css       Shared app navigation and legal notice styling
+- manifest.webmanifest
+- service-worker.js
+- assets/
+- icons/
+
+GITHUB PAGES
+1. Create a new PUBLIC GitHub repository.
+2. Upload the extracted files to the root of the new repository.
+3. Open Settings > Pages.
+4. Choose Deploy from a branch.
+5. Choose main and /(root), then save.
+6. Wait for Pages build and deployment to turn green.
+
+ACCESS
+- The app uses the same temporary access code as the calculator.
+- Access stays saved for 30 days on each browser or installed app.
+- The Lock App button clears the saved access on that device.
+- The access code is stored as a SHA-256 hash, not plain text.
+
+UPDATING THE ACCESS CODE
+1. Create a SHA-256 hash for the new code.
+2. Replace accessCodeHash in config.js with the new 64-character hash.
+3. Increase the service-worker cache version, for example:
+   principles-resource-hub-v1 -> principles-resource-hub-v2
+4. Commit the updated files to GitHub.
+
+IMPORTANT SECURITY LIMITATION
+This is a static GitHub Pages PWA. The password gate, no-index settings, saved
+session, and lock button discourage unauthorized access, but they are not the
+same as secure server-side user accounts. Anyone with advanced technical access
+to the public repository or hosted source files may still inspect the app code.
+
+For stronger protection, use a private membership platform or server-side login
+with individual student accounts and access revocation.
+
+LEGAL REVIEW
+The included disclaimer is general wording and is not a substitute for legal
+advice. Have the final wording reviewed by the client's attorney before launch.
